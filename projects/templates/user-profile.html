@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="text-center" style="margin-top: 9%">
+  <div class="profile-image">
+    <img src="{{profile.profile_pic.url}}" class="gallery-image" alt="" width=30 height=30>
+  </div>
+  <p style="font-size: 22px; font-weight:bold;margin:auto; padding:2px;">{{profile.username}}</p>
+  <p class="card-text" style="font-size:16px;font-weight:bold;">{{profile.description}}</p>
+  <p class="card-text" style="font-size:14px;color:maroon;font-weight:bold;">{{profile.email}}</p>
+
+</div>
+<hr>
+
+<div class="container headers">
+  <div><h4><span class="bold">Your Projects</span></h4></div>
+  
+
+<div class="pages">
+  <div class="row">
+
+    {% for post in posts %}
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+      <div class="card" style="width: 40.2rem;">
+        <img class="card-img-top img-responsive" src="{{post.photo.url}}" alt="Card image cap" responsive>
+        <div class="card-body">
+          <a href="/site/{{post.id}}" style="color:black;text-decoration:none;">
+            <h5 class="card-title" style="line-height:28px;">{{post.title}}</h5>
+          </a>
+          <p class="card-text"><span class="date">{{post.date}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+
+
+  </div>
+</div>
+
+
+
+
+{% endblock %}

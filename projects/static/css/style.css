@@ -1,0 +1,14 @@
+#votes-input{
+    width:100px;
+    height:40px;
+    justify-content: center;
+  }
+  .circle {
+      width: 110px;
+    /* margin: 1px 1px 1px; */
+    display: inline-block;
+    position: relative;
+    text-align: center;
+      vertical-align: top;
+    margin: 0;
+  }

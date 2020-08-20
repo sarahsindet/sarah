@@ -1,0 +1,65 @@
+{% load crispy_forms_tags %}
+{% load static%}
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" id="bar"
+  style="background-color:whitesmoke">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" style="height: 20px">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+      style="background-color: black">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <form class="form-inline" role="search" action="{% url 'search_results'%}">
+            {% csrf_token %}
+            <div class="md-form my-0">
+              <input class="form-control mr-sm-2 " type="text" placeholder="Search..." name="post" aria-label="Search">
+            </div>
+          </form>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav navbar-right">
+        {% if user.is_authenticated%}
+        <div style="margin-top: 12px">
+            
+              <a href="{% url 'directory'%}" style="color: black;text-decoration:none">Directory</a>
+           
+          </div>
+
+        <div style="margin-left: 10px;margin-top: 5px">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false" style="color: black">{{user.username}}<img class="rounded-circle nav-img"
+              src="{{profile.profile_pic.url }}" alt="" style="width: 30px">
+          </a>
+          <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item text-center" href="/user/{{profile.user.username}}">Profile</a>
+            <hr>
+            <a href="{% url 'logout' %}" class="text-secondary text-center dropdown-item">Log Out</a>
+
+          </div>
+        </li>
+      </div>
+        {% else %}
+        <div style="margin-top: 12px">
+          <strong>
+            <a href="/accounts/login" style="margin-top: 20px;color: black;text-decoration:none">REGISTER/LOG IN</a>
+          </strong>
+        </div>
+        {% endif %}
+        <div class="item has-tablet" style="margin-left: 10px">
+          <a href="{% url 'new-project' %}" style="text-decoration: none;color:white">
+            <button class="btn btn-info" style="height:60px;margin-top: -6px;background-color:#49c5b6;border-radius:0;">
+              <span>SUBMIT YOUR SITE!</span>
+          </a></button>
+        </div>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
