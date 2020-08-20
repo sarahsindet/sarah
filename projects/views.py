@@ -19,7 +19,7 @@ def index(request):
     try:
         posts = Post.objects.all()
         posts = posts[::-1]
-    except Post.ObjectDoesNotExist:
+    except ObjectDoesNotExist:
         posts = None
     return render(request, 'index.html', {'posts': posts})
 
